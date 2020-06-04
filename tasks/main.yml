@@ -158,7 +158,7 @@
   tags:
   - dconf_gnome_screensaver_lock_enabled
   - medium_severity
-  - unknown_strategy
+f  - unknown_strategy
   - low_complexity
   - medium_disruption
   - no_reboot_needed
@@ -15604,6 +15604,10 @@
       state: present
       insertbefore: ^[#\s]*Match
       validate: /usr/sbin/sshd -t -f %s
+  - name: Copy etc/issue 
+    copy:
+      src: issue
+      dest: /etc/issue
   when:
   - ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   - sshd_enable_warning_banner | bool
